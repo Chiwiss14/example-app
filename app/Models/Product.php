@@ -7,6 +7,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
+      protected $fillable = [
+        'name',
+        'description',
+        'price',
+        'image',
+        'category_id',
+        'restaurant_id' 
+    ];
     /**
      * Get the category that owns the Product
      *
@@ -16,4 +24,10 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
+    public function restaurant()
+    {
+        return $this->belongsTo(Restaurant::class, 'restaurant_id', 'id');
+    }
 }
+

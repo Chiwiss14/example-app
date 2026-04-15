@@ -18,29 +18,44 @@
 
                     <li aria-current="page"
                         class="text-sm font-medium text-primary truncate leading-none hover:text-primary-500">
-                        Edit {{$product->name}}
+                        Edit {{ $product->name }}
                     </li>
                 </ol>
             </div>
             <div class="grid grid-cols-12">
                 <div class="col-span-8 border rounded-lg">
                     <div class="p-6">
-                        <form action="{{ route('admin.product.update',$product->id) }}" method="POST"> @csrf
-                            <x-input label="Product Name" name="name" value="{{$product->name}}" />
+                        <form action="{{ route('admin.product.update', $product->id) }}" method="POST"> @csrf
+                            <x-input label="Product Name" name="name" value="{{ $product->name }}" />
 
-                            <x-input label="Price" name="price" type="number" value="{{$product->price}}" />
+                            <x-input label="Price" name="price" type="number" value="{{ $product->price }}" />
 
-                            <x-input label="Product Description" name="description" value="{{$product->description}}"/>
+                            <x-input label="Product Description" name="description"
+                                value="{{ $product->description }}" />
 
                             <label for="">Select Category
                                 <select name="category_id" id="" class="w-full">
-                                    <option value="{{$product->category_id}}">"{{$product->category->name}}"</option>
-                                    @foreach ( $categories as $category )
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
-
+                                    <option value="{{ $product->category_id }}">"{{ $product->category->name }}"
+                                    </option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </label>
+
+                            <!-- Add Restaurant Dropdown -->
+                            <div class="form-group">
+                                <label for="restaurant_id">Restaurant:</label>
+                                <select name="restaurant_id" id="restaurant_id" class="form-control" required>
+                                    <option value="">Select Restaurant</option>
+                                    @foreach ($restaurants as $restaurant)
+                                        <option value="{{ $restaurant->id }}"
+                                            {{ $product->restaurant_id == $restaurant->id ? 'selected' : '' }}>
+                                            {{ $restaurant->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
 
                             <x-input label="Product image" name="image" type="file" />
                             <button

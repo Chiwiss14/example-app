@@ -23,4 +23,9 @@ class BlogsController extends Controller
     function blogs() {
         return view("admin.blogs");
     }
+
+    function show(){
+        $blogs = Blog::all();
+        return view("blogs.show", compact("blogs"));
+    }
 }

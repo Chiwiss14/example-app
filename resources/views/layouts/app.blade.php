@@ -188,40 +188,7 @@
                     </div>
                 </div>
 
-                <!-- Profile Dropdown -->
-                <div class="flex">
-                    <div class="hs-dropdown relative inline-flex ">
-                        <button id="hs-dropdown-with-header" type="button" class="hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center gap-2 rounded-full font-medium text-default-700 align-middle transition-all text-xs">
-                            <img class="inline-block h-10 w-10 rounded-full" src="/assets/avatar1-25906796.png">
-                            <div class="lg:block text-start hidden">
-                                <p class="text-sm font-medium text-default-700">{{Auth::user()->name}}</p>
-                                <p class="text-xs text-default-500 mt-1">Admin</p>
-                            </div>
-                        </button>
-
-                        <div class="hs-dropdown-menu mt-2 transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[12rem] shadow-md rounded-lg p-2 border border-default-200 bg-white dark:bg-default-50">
-                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-default-800 transition-all hover:bg-default-100" href="admin-settings.html">
-                                <i class="w-4 h-4" data-lucide="user"></i>
-                                My Profile
-                            </a>
-                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-default-800 transition-all hover:bg-default-100" href="home.html" target="_blank">
-                                <i class="w-4 h-4" data-lucide="newspaper"></i>
-                                Landing
-                            </a>
-                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-default-800 transition-all hover:bg-default-100" href="admin-settings.html">
-                                <i class="w-4 h-4" data-lucide="settings"></i>
-                                Setting
-                            </a>
-
-                            <hr class="my-2 border-default-200 -mx-2">
-
-                            <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-md text-sm text-red-400 hover:bg-red-400/10" href="javascript:void(0)">
-                                <i class="w-4 h-4" data-lucide="log-out"></i>
-                                Log out
-                            </a>
-                        </div>
-                    </div>
-                </div>
+               d
             </div>
         </nav>
     </header>
@@ -255,11 +222,30 @@
 
                 <li class="menu-item">
                     <a class="flex items-center gap-x-2.5 py-2 px-4 text-sm text-default-700 rounded-md hover:bg-default-100"
-                    href="{{route ('admin.product.add') }}">
+                    href="{{route ('admin.addproduct') }}">
                         <i data-lucide="dot" class="w-6 h-6"></i>
                         Product Add
                     </a>
                 </li>
+
+                
+                <li class="menu-item">
+                    <a class="flex items-center gap-x-2.5 py-2 px-4 text-sm text-default-700 rounded-md hover:bg-default-100"
+                    href="{{route ('admin.restaurants.create') }}">
+                        <i data-lucide="dot" class="w-6 h-6"></i>
+                        Restaurant Add
+                    </a>
+                </li>
+
+                 
+                <li class="menu-item">
+                    <a class="flex items-center gap-x-2.5 py-2 px-4 text-sm text-default-700 rounded-md hover:bg-default-100"
+                    href="{{route ('admin.restaurants.index') }}">
+                        <i data-lucide="dot" class="w-6 h-6"></i>
+                        Restaurants
+                    </a>
+                </li>
+
 
 
                 <li class="menu-item">
@@ -267,6 +253,13 @@
                     href="{{route ('admin.blogs') }}">
                         <i data-lucide="dot" class="w-6 h-6"></i>
                         Add Blogs
+                    </a>
+
+                     <li class="menu-item">
+                    <a class="flex items-center gap-x-2.5 py-2 px-4 text-sm text-default-700 rounded-md hover:bg-default-100"
+                    href="{{route ('blogs.show') }}">
+                        <i data-lucide="dot" class="w-6 h-6"></i>
+                        View Blogs
                     </a>
 
                     <li class="menu-item">

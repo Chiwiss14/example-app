@@ -118,8 +118,18 @@
                         <li class="menu-item">
                             <a class="inline-flex items-center text-sm lg:text-base font-medium text-default-800 py-2 px-4 rounded-full hover:text-primary " href="{{route('productdetails')}}">Product Details </a>
                         </li>
+
+                         <li class="menu-item">
+                            <a class="inline-flex items-center text-sm lg:text-base font-medium text-default-800 py-2 px-2 rounded-full hover:text-primary " href="{{route('admin.dashboard')}}">Admin </a>
+                        </li>
+
+                        <li class="menu-item">
+                            <a class="inline-flex items-center text-sm lg:text-base font-medium text-default-800 py-2 px-2 rounded-full hover:text-primary " href="{{route('blogs.show')}}">Blog </a>
+                        </li>
+
                     </ul>
                     <a class="inline-flex items-center text-sm lg:text-base font-medium text-default-800 py-2 px-4 rounded-full hover:text-primary " href="{{route('products')}}">Product</a>
+
 
                     <ul class="flex items-center justify-end gap-x-6">
                         <!-- Search Form Input -->

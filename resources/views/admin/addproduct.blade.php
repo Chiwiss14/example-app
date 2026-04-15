@@ -44,6 +44,17 @@
                                 </select>
                             </label>
 
+                            <!-- Add Restaurant Dropdown -->
+                            <div class="form-group">
+                                <label for="restaurant_id">Restaurant:</label>
+                                <select name="restaurant_id" id="restaurant_id" class="form-control" required>
+                                    <option value="">Select Restaurant</option>
+                                    @foreach ($restaurants as $restaurant)
+                                        <option value="{{ $restaurant->id }}">{{ $restaurant->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
 
 
                             <x-input label="Product image" name="image" type="file" />

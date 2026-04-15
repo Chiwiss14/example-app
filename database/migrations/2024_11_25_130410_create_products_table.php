@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('price');
             $table->string('image')->nullable();
             $table->foreignId('category_id')->nullable();
+            $table->foreignId('restaurant_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

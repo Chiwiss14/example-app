@@ -4,7 +4,7 @@
 
             <div class="flex items-center justify-between w-full mb-6">
                 <h4 class="text-xl font-medium">
-                    Product Add
+                    Product List
                 </h4>
 
                 <ol aria-label="Breadcrumb" class="hidden md:flex items-center whitespace-nowrap min-w-0 gap-2">
@@ -18,7 +18,7 @@
 
                     <li aria-current="page"
                         class="text-sm font-medium text-primary truncate leading-none hover:text-primary-500">
-                        Product Add
+                        Product List
                     </li>
                 </ol>
             </div>
@@ -49,7 +49,7 @@
                                         </ul><!-- end dropdown items -->
                                     </div><!-- end dropdown menu -->
                                 </div>
-                                <a href="admin-product-add.html"
+                                <a href="{{ route('admin.addproduct') }}"
                                     class="py-2.5 px-4 inline-flex rounded-lg text-sm font-medium bg-primary text-white transition-all hover:bg-primary-500">Add
                                     Product</a>
                             </div>
@@ -67,16 +67,18 @@
                                                 Product</th>
                                             <th
                                                 class="px-6 py-3 text-start text-sm whitespace-nowrap font-medium text-default-800">
-                                                Type</th>
+                                                Categories</th>
                                             <th
                                                 class="px-6 py-3 text-start text-sm whitespace-nowrap font-medium text-default-800">
-                                            price</th>
+                                                Restaurants</th>
                                             <th
-
-
                                                 class="px-6 py-3 text-start text-sm whitespace-nowrap font-medium text-default-800">
-                                                Status</th>
+                                                Price</th>
                                             <th
+                                                class="px-6 py-3 text-start text-sm whitespace-nowrap font-medium text-default-800">
+                                                Description</th>
+                                            <th
+                                            
                                                 class="px-6 py-3 text-start text-sm whitespace-nowrap font-medium text-default-800">
                                                 Action</th>
                                         </tr><!-- end table-head-row -->
@@ -84,53 +86,70 @@
                                     <tbody class="divide-y divide-default-200">
                                         @foreach ($products as $product)
                                             <tr>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-default-800">
-                                                    <a href="admin-product-details.html"
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-default-800">
+                                                    <a href="{{ route('admin.product.view', $product->id) }}"
                                                         class="flex items-center gap-3">
                                                         <div class="shrink">
-                                                            <img src="{{$product->image}}" class="h-12 w-12">
+                                                            <img src="{{ $product->image }}" class="h-12 w-12 rounded object-cover">
                                                         </div>
-                                                        <p
-                                                            class="text-base text-default-500 transition-all hover:text-primary">
-                                                            {{$product->name}}</p>
+                                                        <p class="text-base text-default-500 transition-all hover:text-primary">
+                                                            {{ $product->name }}
+                                                        </p>
                                                     </a>
                                                 </td>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-default-500">
-                                                    {{ $product->category->name ?? 'Uncategorized'}}</td>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-default-500">
-                                                    ${{$product->price}}</td>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-default-500">
-                                                    Success</td>
-                                                <td
-                                                    class="px-6 py-4 whitespace-nowrap text-sm font-medium text-default-500">
-                                                    Admin</td>
-                                                <td class="px-6 py-4">
-                                                    <span
-                                                        class="inline-flex items-center gap-1 py-0.5 px-2.5 rounded-full text-xs font-medium bg-green-500/20 text-green-500">Publish</span>
+                                                
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-default-500">
+                                                    {{ $product->category->name ?? 'Uncategorized' }}
                                                 </td>
+                                                
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-default-500">
+                                                    {{ $product->restaurant->name ?? 'No Restaurant' }}
+                                                </td>
+                                                
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-default-500">
+                                                    ${{ number_format($product->price, 2) }}
+                                                </td>
+                                                
+                                                <td class="px-6 py-4">
+                                                    <span class="inline-flex items-center gap-1 py-0.5 px-2.5 rounded-full text-xs font-medium bg-green-500/20 text-green-500">
+                                                        {{ $product->description }}
+                                                    </span>
+                                                </td>
+                                                
                                                 <td class="px-6 py-4">
                                                     <div class="flex gap-3">
-                                                        <a href="{{route('admin.product.edit',$product->id)}}"
-                                                            class="transition-all hover:text-primary"><i
-                                                                data-lucide="pencil" class="w-5 h-5"></i></a>
-                                                        <a href="{{ route('admin.product.view',$product->id) }}"
-                                                            class="transition-all hover:text-primary"><i
-                                                                data-lucide="eye" class="w-5 h-5"></i></a>
-                                                        <a href="{{ route('admin.product.delete',$product->id) }}"javascript:void(0)"
-                                                            class="transition-all hover:text-red-500"><i
-                                                                data-lucide="trash-2" class="w-5 h-5"></i></a>
+                                                        <a href="{{ route('admin.product.edit', $product->id) }}"
+                                                            class="transition-all hover:text-primary">
+                                                            <i data-lucide="pencil" class="w-5 h-5"></i>
+                                                        </a>
+                                                        <a href="{{ route('admin.product.view', $product->id) }}"
+                                                            class="transition-all hover:text-primary">
+                                                            <i data-lucide="eye" class="w-5 h-5"></i>
+                                                        </a>
+                                                        <form action="{{ route('admin.product.delete', $product->id) }}" 
+                                                              method="POST" 
+                                                              class="inline-block"
+                                                              onsubmit="return confirm('Are you sure you want to delete this product?')">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit" class="transition-all hover:text-red-500">
+                                                                <i data-lucide="trash-2" class="w-5 h-5"></i>
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr><!-- end table-row -->
                                         @endforeach
-
                                     </tbody><!-- end t-body -->
                                 </table><!-- end table -->
-                            </div><!-- end overflo-hidden -->
+                                
+                                <!-- Pagination -->
+                                @if(isset($products) && method_exists($products, 'links'))
+                                    <div class="px-6 py-4">
+                                        {{ $products->links() }}
+                                    </div>
+                                @endif
+                            </div><!-- end overflow-hidden -->
                         </div><!-- end table-responsive -->
                     </div>
                 </div>
@@ -138,5 +157,4 @@
         </div>
     </div>
     <!-- End Content -->
-
 </x-app-layout>
